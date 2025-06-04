@@ -2,7 +2,7 @@
 
 Add High Level Repository Structure.
 
-## "Stand up" updates
+## "Stand-up" updates
 
 2025-06-04
 

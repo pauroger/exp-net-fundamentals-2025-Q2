@@ -24,7 +24,7 @@ My learnings to get to the improved diagram: [Journal](journal/week1/diagramming
 
 **Goal**: Let Home B stream media that lives on Home A’s server, without relying on the public Internet.
 
-- What is the pro's and con's of different design descisions. Defend your design choices.
+- What are the pros and cons of different design descisions. Defend your design choices.
 
   - Unique /24 per home (10.42.10.0/24, 10.42.20.0/24).
     - Con: “Wastes” addresses for tiny homes.
@@ -42,11 +42,11 @@ My learnings to get to the improved diagram: [Journal](journal/week1/diagramming
     - Current: Bandwidth halves.
     - Improvements: Add a third cable.
 
-- What wold this plan look like at scale if you extended it to an entire block instead of just to Home B?
+- What would this plan look like at scale if you extended it to an entire block instead of just to Home B?
 
   - Dual-link between houses is probably not scaling to a full block, we could
     build a hub-and-spoke: central block core switch/router in a basement; each
-    home LACP’s to core. This would Decouple homes from each other (no
+    home LACPs to core. This would Decouple homes from each other (no
     dependency on neighbour’s uptime). It also: Scales linearly, Centralises
     upgrades — want 2.5 Gb Ethernet? Just upgrade the switch, Simplifies routing
     + ACLs — one config file, not N, and Lets you offer more services — mesh
