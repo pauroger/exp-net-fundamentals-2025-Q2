@@ -2,23 +2,16 @@
 
 Add High Level Repository Structure.
 
-## Technical Video Demostration
+## "Stand up" updates
 
-```sh
-<Video Demostration>
-```
+2025-06-04
 
-```sh
-<Technical Diagram>
-```
+As I was answering the Readme questions on the diagram from the Livestream-Week 1 I got inspired into making a version 2. You can see the details in the [Diagram](#diagram) section below.
 
-- [Technical Justification Journal]()
+## Diagram
 
-## Journal
+![Technical Diagram](journal/week1/diagramming/images/improved_diagram.png)
 
-Things I learned along the way:
+### [Diagram Readme](journal/week1/diagramming/README.md)
 
-- [Lesson 1]()
-- [Lesson 2]()
-- [Lesson 3]()
-- [Lesson 4]()
+### [Diagram Journal](journal/week1/diagramming/JOURNAL.md)
