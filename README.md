@@ -6,7 +6,7 @@ Add High Level Repository Structure.
 
 2025-06-07
 
-Followed the IP Address management videos while running and testing myself every EC2 instance, see [example](#ip-address-management).
+Followed the IP Address management videos while running and testing myself every EC2 instance, see [Ubuntu example](#ip-address-management).
 
 2025-06-06
 
