@@ -115,4 +115,4 @@ extension.
 This is the resource map of the VPC deployed with CFN.
 
 ![AWS UI VPC Created](assets/aws_vpc_resource_map.png)
-![AWS UI EC2 Instances Created](assets/aws_ec2_resource_map.png)
+![AWS UI Cloud Formation Created](assets/aws_cloud_formation_resouce.png)
