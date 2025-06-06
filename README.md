@@ -9,6 +9,7 @@ Add High Level Repository Structure.
 Template and shell script to create the cloud resources needed for the bootcamp
 in AWS. Learned about the useful AWS commands that highlight what failed when
 running the Cloud Formation (`aws cloudformation describe-change-set`).
+See more in the [Cloud Formation](#cloud-resources-as-code) section blow.
 
 2025-06-04
 
