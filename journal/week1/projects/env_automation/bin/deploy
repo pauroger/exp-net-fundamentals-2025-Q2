@@ -37,7 +37,8 @@ for var in REGION STACK IMPORT_TEMPLATE FULL_TEMPLATE; do
     echo "✗ ${!var} not found – check path" >&2; exit 1; }
 done
 
-# 4 · JSON for resources-to-import --------------------------------------- Uncomment this block when running for the first time.
+# Uncomment this block when running the script for the first time.
+# 4 · JSON for resources-to-import --------------------------------------- 
 # IMPORT_CS="import-$(date +%s)"
 # echo "▶ Building IMPORT change set $IMPORT_CS …"
 # aws cloudformation delete-change-set \

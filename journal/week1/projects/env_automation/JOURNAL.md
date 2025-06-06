@@ -57,9 +57,16 @@ These are the VPC Settings we observed Tim setup for our cloud enviroment in AWS
 Notes:
 
 - Region: eu-west-1 for everything.
-- Make sure we keep the same public IP (Elastic IP setup), when we reboot the instances. Associate the Elastic IP to every instance created.
+- Make sure we keep the same public IP (Elastic IP setup), when we reboot the
+  instances. Associate the Elastic IP to every instance created.
 
 ## Generated and Review CFN Template & Deploy Script
+
+I had already created some of the resources through the UI as I was watching
+Tim's video, which added a bit of overhead as I had to migrate those to the code
+as well as add the code to create the missing resources. This is why I created 2
+templates, and there is a commented out section on the deploy script, which
+should be uncommented only for the first run.
 
 Watching the instructor's videos, I noted the VPC Settings, provided this to LLM
 to produce the CFN template to automate the provision of the VPC infrastructure.
@@ -98,7 +105,8 @@ to produce the CFN template to automate the provision of the VPC infrastructure.
 
 ## Visulization in Infrastructure Composer
 
-I thought maybe we could visulize our VPC via Infrastructure Composer, but its not the best representation.
+Visualisation of the cloud_formation_template via Infrastructure Composer VSCode
+extension.
 
 ![AWS Infra Composer](assets/aws_infra_composer.png)
 
