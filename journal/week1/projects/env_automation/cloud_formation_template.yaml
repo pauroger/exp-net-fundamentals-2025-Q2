@@ -1,0 +1,285 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: |
+  Network-Bootcamp lab – import VPC, IGW, sub-nets & Windows resources,
+  then create Ubuntu and RHEL servers (each with an Elastic IP) plus
+  private ENIs.  Region: eu-west-1.
+
+# ─────────────────────────── Parameters ───────────────────────────
+Parameters:
+  ExistingVpcId:
+    Type: AWS::EC2::VPC::Id
+  ExistingInternetGatewayId:
+    Type: String
+  ExistingWindowsInstanceId:
+    Type: String
+  ExistingWindowsPubEniId:
+    Type: String
+  ExistingWindowsPrivEniId:
+    Type: String
+  ExistingWindowsAmiId:
+    Type: AWS::EC2::Image::Id
+  ExistingPublicSubnetId:
+    Type: AWS::EC2::Subnet::Id
+  ExistingPrivateSubnetId:
+    Type: AWS::EC2::Subnet::Id
+
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: network-bootcamp-key-pem
+
+  MyPublicIp:
+    Type: String
+    Description: Your workstation /32 for the SSH rule
+
+  RedHatAmiId:
+    Type: AWS::EC2::Image::Id
+    Description: Valid RHEL AMI ID in eu-west-1
+
+# ──────────────────────────── Resources ────────────────────────────
+Resources:
+  Placeholder:
+    Type: AWS::CloudFormation::WaitConditionHandle
+    DeletionPolicy: Retain
+
+  # ----- Imported VPC, IGW, subnets & Windows pieces ---------------------
+  ImportedVPC:
+    Type: AWS::EC2::VPC
+    DeletionPolicy: Retain
+    Properties:
+      CidrBlock: 10.200.123.0/24
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: network-bootcamp
+
+  ImportedInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    DeletionPolicy: Retain
+    Properties:
+      Tags:
+        - Key: Name
+          Value: network-bootcamp-igw
+
+  ImportedPublicSubnet:
+    Type: AWS::EC2::Subnet
+    DeletionPolicy: Retain
+    Properties:
+      VpcId: !Ref ImportedVPC
+      CidrBlock: 10.200.123.0/28
+      MapPublicIpOnLaunch: false
+      AvailabilityZone: eu-west-1a
+      Tags:
+        - Key: Name
+          Value: network-bootcamp-public
+
+  ImportedPrivateSubnet:
+    Type: AWS::EC2::Subnet
+    DeletionPolicy: Retain
+    Properties:
+      VpcId: !Ref ImportedVPC
+      CidrBlock: 10.200.123.128/28
+      MapPublicIpOnLaunch: false
+      AvailabilityZone: eu-west-1a
+      Tags:
+        - Key: Name
+          Value: network-bootcamp-private
+
+  ImportedWindowsInstance:
+    Type: AWS::EC2::Instance
+    DeletionPolicy: Retain
+    Properties:
+      ImageId: !Ref ExistingWindowsAmiId
+      InstanceType: t3.large
+      Tags:
+        - Key: Name
+          Value: windows-ec2
+
+  ImportedWindowsPubENI:
+    Type: AWS::EC2::NetworkInterface
+    DeletionPolicy: Retain
+    Properties:
+      SubnetId: !Ref ImportedPublicSubnet
+      GroupSet: []
+      Tags:
+        - Key: Name
+          Value: windows-public-eni
+
+  ImportedWindowsPrivENI:
+    Type: AWS::EC2::NetworkInterface
+    DeletionPolicy: Retain
+    Properties:
+      SubnetId: !Ref ImportedPrivateSubnet
+      GroupSet: []
+      Tags:
+        - Key: Name
+          Value: windows-private-eni
+
+  # ----- Routing (IGW already attached) --------------------------------------
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref ImportedVPC
+      Tags:
+        - Key: Name
+          Value: network-bootcamp-public-rt
+
+  DefaultRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref ImportedInternetGateway
+
+  PublicSubnetAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref ImportedPublicSubnet
+      RouteTableId: !Ref PublicRouteTable
+
+  # ----- Security Group ------------------------------------------------------
+  AllowLoginSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: !Ref ImportedVPC
+      GroupDescription: SSH from my laptop + intra-VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: !Ref MyPublicIp
+        - IpProtocol: -1
+          CidrIp: 10.200.123.0/24
+      Tags:
+        - Key: Name
+          Value: allow-login
+
+  # ----- Windows EIP (by public ENI) -----------------------------------------
+  WindowsEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+
+  WindowsEIPAssoc:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      NetworkInterfaceId: !Ref ImportedWindowsPubENI
+      AllocationId: !GetAtt WindowsEIP.AllocationId
+
+  # ---------------------------------------------------------------------------
+  #  🐧  Ubuntu public ENI & instance + private ENI + EIP
+  # ---------------------------------------------------------------------------
+  UbuntuPubENI:
+    Type: AWS::EC2::NetworkInterface
+    Properties:
+      SubnetId: !Ref ImportedPublicSubnet
+      GroupSet:
+        - !Ref AllowLoginSG
+      Tags:
+        - Key: Name
+          Value: ubuntu-public-eni
+
+  UbuntuInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.medium
+      KeyName: !Ref KeyName
+      NetworkInterfaces:
+        - NetworkInterfaceId: !Ref UbuntuPubENI
+          DeviceIndex: 0
+      ImageId: '{{resolve:ssm:/aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id}}'
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: 16
+            VolumeType: gp3
+      Tags:
+        - Key: Name
+          Value: ubuntu-ec2
+
+  UbuntuPrivENI:
+    Type: AWS::EC2::NetworkInterface
+    Properties:
+      SubnetId: !Ref ImportedPrivateSubnet
+      GroupSet:
+        - !Ref AllowLoginSG
+      Tags:
+        - Key: Name
+          Value: ubuntu-private-eni
+
+  UbuntuPrivAttach:
+    Type: AWS::EC2::NetworkInterfaceAttachment
+    Properties:
+      InstanceId: !Ref UbuntuInstance
+      NetworkInterfaceId: !Ref UbuntuPrivENI
+      DeviceIndex: 1
+
+  UbuntuEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+
+  UbuntuEIPAssoc:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      NetworkInterfaceId: !Ref UbuntuPubENI
+      AllocationId: !GetAtt UbuntuEIP.AllocationId
+
+  # ---------------------------------------------------------------------------
+  #  🎩  Red Hat public ENI & instance + private ENI + EIP
+  # ---------------------------------------------------------------------------
+  RedHatPubENI:
+    Type: AWS::EC2::NetworkInterface
+    Properties:
+      SubnetId: !Ref ImportedPublicSubnet
+      GroupSet:
+        - !Ref AllowLoginSG
+      Tags:
+        - Key: Name
+          Value: redhat-public-eni
+
+  RedHatInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.medium
+      KeyName: !Ref KeyName
+      NetworkInterfaces:
+        - NetworkInterfaceId: !Ref RedHatPubENI
+          DeviceIndex: 0
+      ImageId: !Ref RedHatAmiId
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: 16
+            VolumeType: gp3
+      Tags:
+        - Key: Name
+          Value: redhat-ec2
+
+  RedHatPrivENI:
+    Type: AWS::EC2::NetworkInterface
+    Properties:
+      SubnetId: !Ref ImportedPrivateSubnet
+      GroupSet:
+        - !Ref AllowLoginSG
+      Tags:
+        - Key: Name
+          Value: redhat-private-eni
+
+  RedHatPrivAttach:
+    Type: AWS::EC2::NetworkInterfaceAttachment
+    Properties:
+      InstanceId: !Ref RedHatInstance
+      NetworkInterfaceId: !Ref RedHatPrivENI
+      DeviceIndex: 1
+
+  RedHatEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+
+  RedHatEIPAssoc:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      NetworkInterfaceId: !Ref RedHatPubENI
+      AllocationId: !GetAtt RedHatEIP.AllocationId

@@ -1,0 +1,75 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Import existing VPC, IGW, /28 sub-nets & Windows resources into
+             the “network-bootcamp” stack.
+
+Parameters:
+  ExistingVpcId:             { Type: AWS::EC2::VPC::Id }
+
+  ExistingInternetGatewayId: { Type: String }
+  ExistingWindowsInstanceId: { Type: String }
+  ExistingWindowsPubEniId:   { Type: String }
+  ExistingWindowsPrivEniId:  { Type: String }
+  ExistingWindowsAmiId:      { Type: AWS::EC2::Image::Id }
+
+  ExistingPublicSubnetId:    { Type: AWS::EC2::Subnet::Id }
+  ExistingPrivateSubnetId:   { Type: AWS::EC2::Subnet::Id }
+
+Resources:
+  ImportedVPC:
+    Type: AWS::EC2::VPC
+    DeletionPolicy: Retain
+    Properties:
+      CidrBlock:         10.200.123.0/24
+      EnableDnsSupport:  true
+      EnableDnsHostnames: true
+      Tags: [{ Key: Name, Value: network-bootcamp }]
+
+  ImportedInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    DeletionPolicy: Retain
+    Properties:
+      Tags: [{ Key: Name, Value: network-bootcamp-igw }]
+
+  ImportedPublicSubnet:
+    Type: AWS::EC2::Subnet
+    DeletionPolicy: Retain
+    Properties:
+      VpcId:               !Ref ImportedVPC
+      CidrBlock:           10.200.123.0/28
+      MapPublicIpOnLaunch: false
+      AvailabilityZone:    eu-west-1a
+      Tags: [{ Key: Name, Value: network-bootcamp-public }]
+
+  ImportedPrivateSubnet:
+    Type: AWS::EC2::Subnet
+    DeletionPolicy: Retain
+    Properties:
+      VpcId:               !Ref ImportedVPC
+      CidrBlock:           10.200.123.128/28
+      MapPublicIpOnLaunch: false
+      AvailabilityZone:    eu-west-1a
+      Tags: [{ Key: Name, Value: network-bootcamp-private }]
+
+  ImportedWindowsInstance:
+    Type: AWS::EC2::Instance
+    DeletionPolicy: Retain
+    Properties:
+      ImageId:      !Ref ExistingWindowsAmiId
+      InstanceType: t3.large
+      Tags: [{ Key: Name, Value: windows-ec2 }]
+
+  ImportedWindowsPubENI:
+    Type: AWS::EC2::NetworkInterface
+    DeletionPolicy: Retain
+    Properties:
+      SubnetId:   !Ref ImportedPublicSubnet
+      GroupSet:   []
+      Tags: [{ Key: Name, Value: windows-public-eni }]
+
+  ImportedWindowsPrivENI:
+    Type: AWS::EC2::NetworkInterface
+    DeletionPolicy: Retain
+    Properties:
+      SubnetId:   !Ref ImportedPrivateSubnet
+      GroupSet:   []
+      Tags: [{ Key: Name, Value: windows-private-eni }]

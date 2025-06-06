@@ -1,0 +1,137 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ── figure out where *this* script lives (works for symlinks too) ──────────
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# ── EXISTING AWS RESOURCE IDS ──────────────────────────────────────────────
+VPC_ID="vpc-089bca41ca648e386"
+IGW_ID="igw-0f9363c8853da2f63"
+WIN_INSTANCE_ID="i-052e919528667e855"
+WIN_PUB_ENI_ID="eni-0e18bab435037d8e0"
+WIN_PRIV_ENI_ID="eni-04d3ae8d7afb0b7a3"
+WIN_AMI_ID="ami-0f5b2839d5b998f94"
+PUB_SUBNET_ID="subnet-0de85f7f118dd2037"
+PRIV_SUBNET_ID="subnet-0f3127a65c8c266da"
+RHEL_AMI_ID="ami-01abff0fb51badaf8"
+KEY_NAME="network-bootcamp-key-pem"
+MY_IP="$(curl -s https://checkip.amazonaws.com)/32"
+
+# ── CONSTANTS ──────────────────────────────────────────────────────────────
+STACK="network-bootcamp"
+REGION="eu-west-1"
+
+# paths *relative to this script*, now made absolute
+IMPORT_TEMPLATE="$SCRIPT_DIR/../cloud_formation_template_import.yaml"
+FULL_TEMPLATE="$SCRIPT_DIR/../cloud_formation_template.yaml"
+
+EMPTY='{"AWSTemplateFormatVersion":"2010-09-09","Resources":{"Placeholder":{"Type":"AWS::CloudFormation::WaitConditionHandle","DeletionPolicy":"Retain"}}}'
+
+# ── sanity-guard ───────────────────────────────────────────────────────────
+for var in REGION STACK IMPORT_TEMPLATE FULL_TEMPLATE; do
+  if [[ -z "${!var}" ]]; then
+    echo "✗ $var is empty – aborting" >&2
+    exit 1
+  fi
+  [[ -f "${!var}" || $var == REGION || $var == STACK ]] || {
+    echo "✗ ${!var} not found – check path" >&2; exit 1; }
+done
+
+# 4 · JSON for resources-to-import --------------------------------------- Uncomment this block when running for the first time.
+# IMPORT_CS="import-$(date +%s)"
+# echo "▶ Building IMPORT change set $IMPORT_CS …"
+# aws cloudformation delete-change-set \
+#   --stack-name "$STACK" \
+#   --change-set-name "$IMPORT_CS" \
+#   --region "$REGION" >/dev/null 2>&1 || true
+
+# TMP_JSON="$(mktemp /tmp/cfn-import-XXXXXX).json"
+# cat > "$TMP_JSON" <<EOF
+# [
+#   { "ResourceType":"AWS::EC2::VPC",             "LogicalResourceId":"ImportedVPC",            "ResourceIdentifier":{"VpcId":"${VPC_ID}"} },
+#   { "ResourceType":"AWS::EC2::InternetGateway", "LogicalResourceId":"ImportedInternetGateway","ResourceIdentifier":{"InternetGatewayId":"${IGW_ID}"} },
+#   { "ResourceType":"AWS::EC2::Subnet",          "LogicalResourceId":"ImportedPublicSubnet",   "ResourceIdentifier":{"SubnetId":"${PUB_SUBNET_ID}"} },
+#   { "ResourceType":"AWS::EC2::Subnet",          "LogicalResourceId":"ImportedPrivateSubnet",  "ResourceIdentifier":{"SubnetId":"${PRIV_SUBNET_ID}"} },
+#   { "ResourceType":"AWS::EC2::Instance",        "LogicalResourceId":"ImportedWindowsInstance","ResourceIdentifier":{"InstanceId":"${WIN_INSTANCE_ID}"} },
+#   { "ResourceType":"AWS::EC2::NetworkInterface","LogicalResourceId":"ImportedWindowsPubENI",  "ResourceIdentifier":{"Id":"${WIN_PUB_ENI_ID}"} },
+#   { "ResourceType":"AWS::EC2::NetworkInterface","LogicalResourceId":"ImportedWindowsPrivENI", "ResourceIdentifier":{"Id":"${WIN_PRIV_ENI_ID}"} }
+# ]
+# EOF
+
+# aws cloudformation create-change-set \
+#   --stack-name "$STACK" \
+#   --change-set-name "$IMPORT_CS" \
+#   --change-set-type IMPORT \
+#   --template-body "file://$IMPORT_TEMPLATE" \
+#   --resources-to-import "file://$TMP_JSON" \
+#   --parameters \
+#     ParameterKey=ExistingVpcId,ParameterValue="$VPC_ID" \
+#     ParameterKey=ExistingInternetGatewayId,ParameterValue="$IGW_ID" \
+#     ParameterKey=ExistingWindowsInstanceId,ParameterValue="$WIN_INSTANCE_ID" \
+#     ParameterKey=ExistingWindowsPubEniId,ParameterValue="$WIN_PUB_ENI_ID" \
+#     ParameterKey=ExistingWindowsPrivEniId,ParameterValue="$WIN_PRIV_ENI_ID" \
+#     ParameterKey=ExistingWindowsAmiId,ParameterValue="$WIN_AMI_ID" \
+#     ParameterKey=ExistingPublicSubnetId,ParameterValue="$PUB_SUBNET_ID" \
+#     ParameterKey=ExistingPrivateSubnetId,ParameterValue="$PRIV_SUBNET_ID" \
+#   --region "$REGION"
+
+# rm -f "$TMP_JSON"
+
+# aws cloudformation wait change-set-create-complete \
+#   --stack-name "$STACK" --change-set-name "$IMPORT_CS" --region "$REGION"
+# echo "   ↳ IMPORT change set ready"
+
+# read -p $'\nExecute IMPORT change set? [y/N] ' REPLY
+# [[ $REPLY =~ ^[Yy]$ ]] || { echo "✗ Import cancelled"; exit 1; }
+
+# aws cloudformation execute-change-set \
+#   --stack-name "$STACK" --change-set-name "$IMPORT_CS" --region "$REGION"
+
+# aws cloudformation wait stack-import-complete \
+#   --stack-name "$STACK" --region "$REGION"
+# echo "   ✓ Existing resources now under CFN control"
+
+# ── 5 · CHANGE-SET #2 · UPDATE (Linux, EIPs) ────────────────────────────
+UPDATE_CS="update-$(date +%s)"
+echo "▶ Building UPDATE change set $UPDATE_CS …"
+aws cloudformation delete-change-set \
+  --stack-name "$STACK" --change-set-name "$UPDATE_CS" --region "$REGION" >/dev/null 2>&1 || true
+
+aws cloudformation create-change-set \
+  --stack-name "$STACK" \
+  --change-set-name "$UPDATE_CS" \
+  --change-set-type UPDATE \
+  --template-body "file://$FULL_TEMPLATE" \
+  --parameters \
+    ParameterKey=ExistingVpcId,UsePreviousValue=true \
+    ParameterKey=ExistingInternetGatewayId,UsePreviousValue=true \
+    ParameterKey=ExistingWindowsInstanceId,UsePreviousValue=true \
+    ParameterKey=ExistingWindowsPubEniId,UsePreviousValue=true \
+    ParameterKey=ExistingWindowsPrivEniId,UsePreviousValue=true \
+    ParameterKey=ExistingWindowsAmiId,UsePreviousValue=true \
+    ParameterKey=ExistingPublicSubnetId,UsePreviousValue=true \
+    ParameterKey=ExistingPrivateSubnetId,UsePreviousValue=true \
+    ParameterKey=KeyName,ParameterValue="$KEY_NAME" \
+    ParameterKey=MyPublicIp,ParameterValue="$MY_IP" \
+    ParameterKey=RedHatAmiId,ParameterValue="$RHEL_AMI_ID" \
+  --region "$REGION"
+
+aws cloudformation wait change-set-create-complete \
+  --stack-name "$STACK" --change-set-name "$UPDATE_CS" --region "$REGION"
+echo "   ↳ UPDATE change set ready"
+
+read -p $'\nExecute UPDATE change set? [y/N] ' REPLY
+[[ $REPLY =~ ^[Yy]$ ]] || { echo "✗ Update cancelled"; exit 1; }
+
+aws cloudformation execute-change-set \
+  --stack-name "$STACK" --change-set-name "$UPDATE_CS" --region "$REGION"
+
+aws cloudformation wait stack-update-complete \
+  --stack-name "$STACK" --region "$REGION"
+echo "   ✓ Linux servers, subnets & EIPs deployed 🎉"
+
+# # ── 6 · After EACH wait, print first FAILED event (helper) ---------------
+# aws cloudformation describe-stack-events \
+#   --stack-name "$STACK" --region "$REGION" \
+#   --query "StackEvents[?contains(ResourceStatus,'FAILED')].[LogicalResourceId,ResourceStatusReason]" \
+#   --output table | head -n 1 || true
