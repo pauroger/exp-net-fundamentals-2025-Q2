@@ -4,6 +4,10 @@ Add High Level Repository Structure.
 
 ## "Stand-up" updates
 
+2025-06-07
+
+Followed the IP Address management videos while running and testing myself every EC2 instance, see [example](#ip-address-management).
+
 2025-06-06
 
 Template and shell script to create the cloud resources needed for the bootcamp
@@ -32,3 +36,9 @@ As I was answering the Readme questions on the diagram from the Livestream-Week
 ### [Cloud Resources Readme](journal/week1/projects/env_automation/README.md)
 
 ### [Cloud Resources Journal](journal/week1/projects/env_automation/JOURNAL.md)
+
+## IP Address Management
+
+Example:
+
+![ubuntu_example](assets/ubuntu_example.png)
