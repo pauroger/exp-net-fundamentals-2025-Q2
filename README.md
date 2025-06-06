@@ -26,6 +26,8 @@ As I was answering the Readme questions on the diagram from the Livestream-Week
 
 ## Cloud Resources as Code
 
+![AWS Infra Composer](journal/week1/projects/env_automation/assets/aws_infra_composer.png)
+
 ### [Cloud Resources Readme](journal/week1/projects/env_automation/README.md)
 
 ### [Cloud Resources Journal](journal/week1/projects/env_automation/JOURNAL.md)
