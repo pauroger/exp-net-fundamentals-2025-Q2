@@ -21,5 +21,5 @@ For the first run, remember to uncomment the currently commented out section of 
 deploy script.
 
 If this would have to be reused often, the 2 points above would have to be
-adddressed. For the scope of the Bootcamp, I consider the current setup as 'good
+addressed. For the scope of the Bootcamp, I consider the current setup as 'good
 enough', and will now move to the next sections.
