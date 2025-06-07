@@ -36,14 +36,13 @@ Next, On the PC we opened a command prompt and asked for: `ipconfig /renew`.
               ┌────────────────┐
               │ Switch0        │  Cisco Catalyst 2960-24TT
               └─┬────────┬─────┘
-     Fa0/1 ▲   │        │   ▲ Fa0/2
-           │   │        │   │
-           │   │        │   │
-         PC0   │        │  Server1
-   DHCP client │        │  Static-IP ( 192.168.0.2/24 )
-               │        │
-   ────────────┘        └───────────────────────────────
-
+      Fa0/1 ▲   │        │   ▲ Fa0/2
+            │   │        │   │
+            │   │        │   │
+          PC0   │        │  Server1
+    DHCP client │        │  Static-IP ( 192.168.0.2/24 )
+                │        │
+    ────────────┘        └───────────────────────────────
 ```
 
 2) Packet flow in order for the PC to get it's IP Address.
