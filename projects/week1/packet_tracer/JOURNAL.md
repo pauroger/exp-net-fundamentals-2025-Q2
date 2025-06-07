@@ -13,14 +13,14 @@ FastEthernet and GigbEthernet between the Router and the Switch.
 
 On the Router:
 
-- IPv4 Addess to: 192.168.0.1
+- IPv4 Address to: 192.168.0.1
 - SubnetMask: 255.255.255.0
 
 On the server:
 
 - We have set the Default Gateway and DNS Server to 192.168.0.2 (Gave a
   different static IP so it doesn’t clash with the router.)
-- As well as the IPv4 Addess to the same: 192.168.0.2
+- As well as the IPv4 Address to the same: 192.168.0.2
 - And SubnetMask: 255.255.255.0
 
 Next, On the PC we opened a command prompt and asked for: `ipconfig /renew`.
