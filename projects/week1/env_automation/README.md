@@ -1,15 +1,15 @@
 # Cloud Formation Automation
 
-See full list of settings in the [JOURNAL.md](journal/week1/projects/env_automation/JOURNAL.md).
+See full list of settings in the [JOURNAL.md](JOURNAL.md).
 
 ```sh
-chmod +x journal/week1/projects/env_automation/bin/deploy
+chmod +x projects/week1/env_automation/bin/deploy
 ```
 
 Run it from root:
 
 ```sh
-./journal/week1/projects/env_automation/bin/deploy
+./projects/week1/env_automation/bin/deploy
 ```
 
 ## Shortcommings

@@ -8,7 +8,7 @@ Add High Level Repository Structure.
 
 Followed the IP Address management videos while running and testing myself every
 EC2 instance. I've also created a Windows VM Machine in Azure. See documented
-process in the [IP Address Management Journal](projects/week1/ip-address-management/JOURNAL.md).
+process in the [IP Address Management Journal](projects/week1/ip_address_management/JOURNAL.md).
 
 2025-06-06
 
@@ -25,7 +25,7 @@ As I was answering the Readme questions on the diagram from the Livestream-Week
 
 ## Diagram
 
-![Technical Diagram](projects/week1/diagramming/images/improved_diagram.png)
+![Technical Diagram](projects/week1/diagramming/assets/improved_diagram.png)
 
 ### [Diagram Readme](projects/week1/diagramming/README.md)
 
