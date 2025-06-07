@@ -9,6 +9,10 @@ Add High Level Repository Structure.
 Followed the Cisco Packet Tracer Tutorial, and described diagram and packet
 flow. See more in [Packet Tracer](#packet-tracer) below.
 
+Same thing with the Windows Networking Tutorial. More in the:
+
+### [Windows Networking Journal](projects/week1/windows_networking/JOURNAL.md)
+
 2025-06-07
 
 Followed the IP Address management videos while running and testing myself every
