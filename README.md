@@ -7,7 +7,7 @@ Add High Level Repository Structure.
 2025-06-07
 
 Followed the IP Address management videos while running and testing myself every
-EC2 instance. I've also created a Windows VM Maching in Azure. See documented
+EC2 instance. I've also created a Windows VM Machine in Azure. See documented
 process in the [IP Address Management Journal](projects/week1/ip-address-management/JOURNAL.md).
 
 2025-06-06
