@@ -8,15 +8,15 @@ Diagram made as I followed the Week 1 livestream.
 
 [Excalidraw Diagram](https://excalidraw.com/#json=JD-dzjguybS0y7r67-hdY,VUHvR3PqV7_Haif2PSCTxw)
 
-![screenshot](images/diagram.png)
+![screenshot](assets/diagram.png)
 
 ## Improved Diagram
 
-My learnings to get to the improved diagram: [Journal](journal/week1/diagramming/JOURNAL.md)
+My learnings to get to the improved diagram: [Journal](JOURNAL.md)
 
 [Excalidraw Diagram](https://excalidraw.com/#json=pgInz5qYtETm5hVGILXfO,atw5uyt66JS0r8tIrEh--w)
 
-![alt text](images/improved_diagram.png)
+![alt text](assets/improved_diagram.png)
 
 ## Questions to Answer
 
@@ -75,7 +75,7 @@ My learnings to get to the improved diagram: [Journal](journal/week1/diagramming
 - What would you do to resolve overlapping networking conflicts?
 
 Unique /24 per home (10.42.10.0/24, 10.42.20.0/24).
-See [JOURNAL.md](journal/week1/diagramming/JOURNAL.md) for details.
+See [JOURNAL.md](JOURNAL.md) for details.
 
 - What have you done to security to harden this design?
 

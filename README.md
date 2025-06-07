@@ -6,9 +6,16 @@ Add High Level Repository Structure.
 
 2025-06-07
 
+Followed the Cisco Packet Tracer Tutorial, and described diagram and packet
+flow. See more in [Packet Tracer](#packet-tracer) below.
+
+2025-06-07
+
 Followed the IP Address management videos while running and testing myself every
 EC2 instance. I've also created a Windows VM Machine in Azure. See documented
-process in the [IP Address Management Journal](projects/week1/ip-address-management/JOURNAL.md).
+process:
+
+### [IP Address Management Journal](projects/week1/ip_address_management/JOURNAL.md)
 
 2025-06-06
 
@@ -25,7 +32,7 @@ As I was answering the Readme questions on the diagram from the Livestream-Week
 
 ## Diagram
 
-![Technical Diagram](projects/week1/diagramming/images/improved_diagram.png)
+![Technical Diagram](projects/week1/diagramming/assets/improved_diagram.png)
 
 ### [Diagram Readme](projects/week1/diagramming/README.md)
 
@@ -38,3 +45,27 @@ As I was answering the Readme questions on the diagram from the Livestream-Week
 ### [Cloud Resources Readme](projects/week1/env_automation/README.md)
 
 ### [Cloud Resources Journal](projects/week1/env_automation/JOURNAL.md)
+
+## Packet Tracer
+
+```sh
+                 ┌──────────┐  Gi0/0
+                 │ Router0  │  192.168.0.1/24   (default-gateway, DHCP)
+                 │  ISR4331 │
+                 └────┬─────┘
+                      │
+                      │ Gigabit-Ethernet
+                      ▼
+              ┌────────────────┐
+              │ Switch0        │  Cisco Catalyst 2960-24TT
+              └─┬────────┬─────┘
+      Fa0/1 ▲   │        │   ▲ Fa0/2
+            │   │        │   │
+            │   │        │   │
+          PC0   │        │  Server1
+    DHCP client │        │  Static-IP ( 192.168.0.2/24 )
+                │        │
+    ────────────┘        └───────────────────────────────
+```
+
+### [Packet Tracer Journal](projects/week1/packet_tracer/JOURNAL.md)
