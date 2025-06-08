@@ -4,22 +4,16 @@ Add High Level Repository Structure.
 
 ## "Stand-up" updates
 
-2025-06-07
+2025-06-07/08
 
-Followed the Cisco Packet Tracer Tutorial, and described diagram and packet
-flow. See more in [Packet Tracer](#packet-tracer) below.
+Followed the tutorials:
 
-Same thing with the Windows Networking Tutorial. More in the:
-
-### [Windows Networking Journal](projects/week1/windows_networking/JOURNAL.md)
-
-2025-06-07
-
-Followed the IP Address management videos while running and testing myself every
-EC2 instance. I've also created a Windows VM Machine in Azure. See documented
-process:
-
-### [IP Address Management Journal](projects/week1/ip_address_management/JOURNAL.md)
+- **Windows Firewall Rules**. See [Journal](projects/week1/windows_firewall_rules/JOURNAL.md).
+- **Cisco Packet Tracer**, and described diagram and packet flow. See more in
+[Packet Tracer](#packet-tracer) below.
+- **Windows Networking**. See [Journal](projects/week1/windows_networking/JOURNAL.md).
+- **IP Address Management**. Ran and tested myself every EC2 instance. I've also
+created a Windows VM Machine in Azure. See [Journal](projects/week1/ip_address_management/JOURNAL.md).
 
 2025-06-06
 
