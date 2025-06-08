@@ -31,7 +31,7 @@ in the AWS Security Group to allow external access.
 curl http://127.0.0.1:8000
 ```
 
-Output Wihin my Windows EC2 Instance:
+Output Within my Windows EC2 Instance:
 
 ```sh
 PS C:\Users\Administrator> curl http://127.0.0.1:8000                                                                   
