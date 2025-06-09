@@ -8,6 +8,7 @@ Add High Level Repository Structure.
 
 Followed the Week1 tutorials:
 
+- **Linux Firewall Rules**. See [Journal](projects/week1/linux_firewall_rules/JOURNAL.md).
 - **Linux Networking**. See [Journal](projects/week1/linux_networking/JOURNAL.md).
 - **Windows Firewall Rules**. See [Journal](projects/week1/windows_firewall_rules/JOURNAL.md).
 - **Cisco Packet Tracer**, and described diagram and packet flow. See more in
