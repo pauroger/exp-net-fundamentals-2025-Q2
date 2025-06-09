@@ -4,10 +4,11 @@ Add High Level Repository Structure.
 
 ## "Stand-up" updates
 
-2025-06-07/08
+2025-06-07/08/09
 
-Followed the tutorials:
+Followed the Week1 tutorials:
 
+- **Linux Networking**. See [Journal](projects/week1/linux_networking/JOURNAL.md).
 - **Windows Firewall Rules**. See [Journal](projects/week1/windows_firewall_rules/JOURNAL.md).
 - **Cisco Packet Tracer**, and described diagram and packet flow. See more in
 [Packet Tracer](#packet-tracer) below.
