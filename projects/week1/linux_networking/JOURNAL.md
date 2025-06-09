@@ -1,6 +1,6 @@
 # Journal
 
-## Communicate between the Ubunto and RedHat box
+## Communicate between the Ubuntu and RedHat box
 
 In the top terminal, I'm logged into the **Ubuntu EC2 instance**. I initiate a
 `ping` to the IP address `10.200.123.135`, which is the IP bound to interface
@@ -18,7 +18,7 @@ successfully **receiving the echo requests** from the Ubuntu machine. The
 captured packets confirm that network connectivity exists between the two
 instances over the `enX1` interface.
 
-![Ubunto to RedHat Comms](assets/ubuntu_redhat_comms.png)
+![Ubuntu to RedHat Comms](assets/ubuntu_redhat_comms.png)
 
 ## Wget vs Curl
 
