@@ -12,7 +12,7 @@ Followed the Week1 tutorials:
 - **Linux Firewall Rules**. See [Journal](projects/week1/linux_firewall_rules/JOURNAL.md).
 - **Linux Networking**. See [Journal](projects/week1/linux_networking/JOURNAL.md).
 - **Windows Firewall Rules**. See [Journal](projects/week1/windows_firewall_rules/JOURNAL.md).
-- **Cisco Packet Tracer**. See described diagram, packet flow, and moree in
+- **Cisco Packet Tracer**. See described diagram, packet flow, and more in
 [Packet Tracer](#packet-tracer) section below.
 - **Windows Networking**. See [Journal](projects/week1/windows_networking/JOURNAL.md).
 - **IP Address Management**. Ran and tested myself every EC2 instance. I've also
