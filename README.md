@@ -1,6 +1,21 @@
 # Networking Fundamentals Bootcamp
 
-Add High Level Repository Structure.
+Repo Structure Overview
+
+```text
+README.md
+projects/
+└── week1/
+    ├── cloud_networking/       – Journal plus screenshots on AWS, Azure and GCP networking.
+    ├── diagramming/            – README and journal explaining network diagrams (with images).
+    ├── env_automation/         – CloudFormation templates, a deploy script, and journal notes.
+    ├── ip_address_management/  – Notes and ARM templates for VM deployments with IP settings.
+    ├── linux_firewall_rules/   – Journal on configuring Linux firewall rules.
+    ├── linux_networking/       – Journal on basic Linux networking (plus a diagram).
+    ├── packet_tracer/          – Packet Tracer project file, journal, and screenshot.
+    ├── windows_firewall_rules/ – Journal and HTML example for Windows firewall rules.
+    └── windows_networking/     – Journal on Windows networking (with a screenshot).
+```
 
 ## "Stand-up" updates
 
