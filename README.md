@@ -21,7 +21,11 @@ projects/
 
 2025-06-15
 
-Spent the last couple of days trying to get Cisco CML running via VMware, but hit compatibility issues on my Silicon Mac, even when using the Windows VM from last week! I’ve documented my progress and blockers in the Journal with screenshots. See [Journal](projects/week2/cml_lab/JOURNAL.md).
+- Spent the last couple of days trying to get **Cisco CML** running via VMware,
+  but hit compatibility issues on my Silicon Mac, even when using the Windows VM
+  from last week! I’ve documented my progress and blockers in the Journal with
+  screenshots. See [Journal](projects/week2/cml_lab/JOURNAL.md).
+- **CML VPN Lab**. See [Journal](projects/week2/cml_vpn/JOURNAL.md).
 
 ## "Stand-up" updates Week 1
 
