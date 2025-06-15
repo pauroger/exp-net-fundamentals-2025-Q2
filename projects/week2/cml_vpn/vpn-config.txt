@@ -21,7 +21,7 @@
 !
 ! A policy is established for the supported ISAKMP encryption,
 ! authentication, Diffie-Hellman, lifetime, and key parameters.
-! Please note, these sample configurations are for the minimum requirement of AES128, SHA1, and DH Group 2.
+! Please note, these sample configurations are for the minimum requirement of AES128, SHA1, and DH Group 14.
 ! Category "VPN" connections in the GovCloud region have a minimum requirement of AES128, SHA2, and DH Group 14.
 ! You will need to modify these sample configuration files to take advantage of AES256, SHA256, or other DH groups like 2, 14-18, 22, 23, and 24.
 ! NOTE: If you customized tunnel options when creating or modifying your VPN connection, you may need to modify these sample configurations to match the custom settings for your tunnels.
@@ -183,7 +183,7 @@ exit
 !
 ! A policy is established for the supported ISAKMP encryption,
 ! authentication, Diffie-Hellman, lifetime, and key parameters.
-! Please note, these sample configurations are for the minimum requirement of AES128, SHA1, and DH Group 2.
+! Please note, these sample configurations are for the minimum requirement of AES128, SHA1, and DH Group 14.
 ! Category "VPN" connections in the GovCloud region have a minimum requirement of AES128, SHA2, and DH Group 14.
 ! You will need to modify these sample configuration files to take advantage of AES256, SHA256, or other DH groups like 2, 14-18, 22, 23, and 24.
 ! NOTE: If you customized tunnel options when creating or modifying your VPN connection, you may need to modify these sample configurations to match the custom settings for your tunnels.
@@ -202,7 +202,7 @@ exit
 crypto isakmp policy 201
   encryption aes 128
   authentication pre-share
-  group 2
+  group 14
   lifetime 28800
   hash sha
 exit
