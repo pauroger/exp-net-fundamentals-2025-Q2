@@ -17,7 +17,13 @@ projects/
     └── windows_networking/     – Journal on Windows networking (with a screenshot).
 ```
 
-## "Stand-up" updates
+## "Stand-up" updates Week 2
+
+2025-06-15
+
+Spent the last couple of days trying to get Cisco CML running via VMware, but hit compatibility issues on my Silicon Mac, even when using the Windows VM from last week! I’ve documented my progress and blockers in the Journal with screenshots. See [Journal](projects/week2/cml_lab/JOURNAL.md).
+
+## "Stand-up" updates Week 1
 
 2025-06-07/08/09/10
 
