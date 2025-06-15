@@ -172,7 +172,7 @@ router bgp 65002
 ! To advertise additional prefixes to Amazon VPC, copy the 'network' statement
 ! and identify the prefix you wish to advertise. Make sure the prefix is present
 ! in the routing table of the device with a valid next-hop.
-    network 0.0.0.0
+!    network 0.0.0.0
   exit
 exit
 !
