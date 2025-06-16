@@ -12,10 +12,11 @@ used to:
   routing updates, VPN tunnels).
 
 To be able to follow along, since I was not able to install CML, I pinged from
-my local machine instead and followed the packages along within Wiresharck.
-Example of IMCP traffic while pinging 8.8.8.8
+my local machine instead and followed the packets along within Wiresharkga
+.
+Example of ICMP traffic while pinging 8.8.8.8
 
-![Example IMCP](assets/example_imcp.png)
+![Example ICMP](assets/example_icmp.png)
 
 PS. ICMP (Internet Control Message Protocol) is a network layer protocol used
 for sending error messages and operational information between devices on a
