@@ -27,6 +27,7 @@ projects/
   screenshots. See [Journal](projects/week2/cml_lab/JOURNAL.md).
 - **CML VPN Lab**. See [Journal](projects/week2/cml_vpn/JOURNAL.md).
 - **CML Wireshark Lab**. See [Journal](projects/week2/cml_wireshark/JOURNAL.md).
+- Summary of the **NAT Basics** presentation. See [Journal](projects/week2/nat_basics/assets/static_nat_example.png).
 
 ## "Stand-up" updates Week 1
 
