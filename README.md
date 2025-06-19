@@ -19,6 +19,15 @@ projects/
 
 ## "Stand-up" updates Week 2
 
+2025-06-19
+
+I noticed a surprising ~$45 charge from AWS, even though my EC2 instances were
+turned off. It turns out that the networking components—like VPCs, subnets, NAT
+gateways, and Elastic IPs—were still running silently in the background. I’ve
+since shut down everything in AWS and instead spun up an Ubuntu box in Azure for
+the Load Balancer lab. I have free credits there, and I find it easier to delete
+all resources at once by removing the entire project.
+
 2025-06-15/16
 
 - Spent the last couple of days trying to get **Cisco CML** running via VMware,
