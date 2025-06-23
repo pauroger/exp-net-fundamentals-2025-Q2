@@ -19,6 +19,10 @@ projects/
 
 ## "Stand-up" updates Week 2
 
+2025-06-23
+
+Succeeded recreating the Reverse Proxy Lab. See [Journal](projects/week2/load_balancer/JOURNAL.md).
+
 2025-06-19
 
 I noticed a surprising ~$45 charge from AWS, even though my EC2 instances were
