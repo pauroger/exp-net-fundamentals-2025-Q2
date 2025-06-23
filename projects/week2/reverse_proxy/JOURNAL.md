@@ -2,7 +2,7 @@
 
 ## Reverse Proxy Lab
 
-Installed Container Lab's in an Ubunto box in Azure.
+Installed Container Lab's in an Ubuntu box in Azure.
 
 ![Container Lab Install](assets/container_lab_install.png)
 
@@ -48,7 +48,7 @@ Go back to the Windows box and set up the server. Make sure to add the Role `IIS
 
 ![IIS Windows Server](assets/iis_windows_server.png)
 
-Then, on my local maching, add the public IP from my Windows Box.
+Then, on my local machine, add the public IP from my Windows Box.
 
 ```sh
 4.231.104.245  proxy-demo
