@@ -21,7 +21,7 @@ projects/
 
 2025-06-23
 
-Succeeded recreating the Reverse Proxy Lab. See [Journal](projects/week2/load_balancer/JOURNAL.md).
+Succeeded recreating the Reverse Proxy Lab. See [Journal](projects/week2/reverse_proxy/JOURNAL.md).
 
 2025-06-19
 
