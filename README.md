@@ -19,9 +19,14 @@ projects/
 
 ## "Stand-up" updates Week 2
 
-2025-06-23
+2025-06-23/25
 
-Succeeded recreating the Reverse Proxy Lab. See [Journal](projects/week2/reverse_proxy/JOURNAL.md).
+I struggled a bit on the VM setup, since I had to recreate all of it in Azure
+from Scratch due to the AWS price scare. Eventually I managed to successfully
+create some interesting VM-Inception:
+
+- Forward Proxy Lab. See [Journal](projects/week2/forward_proxy/JOURNAL.md).
+- Reverse Proxy Lab. See [Journal](projects/week2/reverse_proxy/JOURNAL.md).
 
 2025-06-19
 
