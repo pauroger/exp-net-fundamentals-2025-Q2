@@ -21,9 +21,9 @@ projects/
 
 2025-06-23/25
 
-I struggled a bit on the VM setup, since I had to recreate all of it in Azure
-from Scratch due to the AWS price scare. Eventually I managed to successfully
-create some interesting VM-Inception:
+I ran into some challenges with the VM setup, as I had to recreate everything
+from scratch in Azure due to the AWS price scare. In the end, I successfully set
+up an interesting VM-inception scenario:
 
 - Forward Proxy Lab. See [Journal](projects/week2/forward_proxy/JOURNAL.md).
 - Reverse Proxy Lab. See [Journal](projects/week2/reverse_proxy/JOURNAL.md).
