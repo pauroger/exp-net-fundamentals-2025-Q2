@@ -15,6 +15,15 @@ projects/
     ├── packet_tracer/          – Packet Tracer project file, journal, and screenshot.
     ├── windows_firewall_rules/ – Journal and HTML example for Windows firewall rules.
     └── windows_networking/     – Journal on Windows networking (with a screenshot).
+└── week2/
+    ├── cml_lab/                – Cisco Modeling Labs NAT lab configs.
+    ├── cml_vpn/                – VPN lab with sample config.
+    ├── cml_wireshark/          – Wireshark lab capturing traffic.
+    ├── forward_proxy/          – VM-inception proxy notes lab.
+    ├── load_balancer/          – Load balancer presentation notes.
+    ├── nat_basics/             – NAT basics summary with diagrams.
+    ├── reverse_proxy/          – Reverse proxy lab notes and images.
+    └── zero-trust/             – Zero-trust presentation notes.
 ```
 
 ## "Stand-up" updates Week 2
