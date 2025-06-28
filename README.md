@@ -119,4 +119,4 @@ As I was answering the Readme questions on the diagram from the Livestream-Week
 ## Presentation Summaries
 
 - Load Balancers. See [Journal](projects/week1/load_balancer/JOURNAL.md).
-- Zero-Trust. See [Journal](projects/week1/zero_trust_iap/JOURNAL.md).
+- Zero-Trust. See [Journal](projects/week1/zero_trust/JOURNAL.md).
