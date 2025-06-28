@@ -115,3 +115,8 @@ As I was answering the Readme questions on the diagram from the Livestream-Week
 ```
 
 ### [Packet Tracer Journal](projects/week1/packet_tracer/JOURNAL.md)
+
+## Presentation Summaries
+
+- Load Balancers. See [Journal](projects/week1/load_balancer/JOURNAL.md).
+- Zero-Trust. See [Journal](projects/week1/zero_trust_iap/JOURNAL.md).
