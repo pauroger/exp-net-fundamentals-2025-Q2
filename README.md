@@ -20,6 +20,7 @@ projects/
     ├── cml_vpn/                – VPN lab with sample config.
     ├── cml_wireshark/          – Wireshark lab capturing traffic.
     ├── forward_proxy/          – VM-inception proxy notes lab.
+    ├── ha_proxy/               – HAProxy load balancer with two backend servers.
     ├── load_balancer/          – Load balancer presentation notes.
     ├── nat_basics/             – NAT basics summary with diagrams.
     ├── reverse_proxy/          – Reverse proxy lab notes and images.
@@ -27,6 +28,13 @@ projects/
 ```
 
 ## "Stand-up" updates Week 2
+
+2025-06-30
+
+Deployed an HAProxy load balancer with two backend web servers using
+Containerlab. Configured routing both in Azure and on my Windows box to enable
+full network connectivity between the Windows VM, the Ubuntu host, and the
+container network. See [Journal](projects/week2/ha_proxy/JOURNAL.md).
 
 2025-06-23/25
 
