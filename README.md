@@ -1,32 +1,53 @@
 # Networking Fundamentals Bootcamp
 
-Repo Structure Overview
+Welcome to my Networking Fundamentals Bootcamp repository. This contains all
+labs, diagrams, notes, and deliverables across cloud networking, Linux/Windows
+networking, and network appliance configuration.
+
+## Table of Contents
+
+- [Repo Structure Overview](#repo-structure-overview)
+- [Stand-up Updates](#stand-up-updates)
+- [Diagram](#diagram)
+- [Cloud Resources as Code](#cloud-resources-as-code)
+- [Packet Tracer](#packet-tracer)
+- [Presentation Summaries](#presentation-summaries)
+
+## Repo Structure Overview
 
 ```text
 README.md
 projects/
 └── week1/
-    ├── cloud_networking/       – Journal plus screenshots on AWS, Azure and GCP networking.
-    ├── diagramming/            – README and journal explaining network diagrams (with images).
-    ├── env_automation/         – CloudFormation templates, a deploy script, and journal notes.
-    ├── ip_address_management/  – Notes and ARM templates for VM deployments with IP settings.
-    ├── linux_firewall_rules/   – Journal on configuring Linux firewall rules.
-    ├── linux_networking/       – Journal on basic Linux networking (plus a diagram).
-    ├── packet_tracer/          – Packet Tracer project file, journal, and screenshot.
-    ├── windows_firewall_rules/ – Journal and HTML example for Windows firewall rules.
-    └── windows_networking/     – Journal on Windows networking (with a screenshot).
+    ├── cloud_networking/       – Cloud networking labs (AWS, Azure, GCP).
+    ├── diagramming/            – Network diagrams, explanations, journals.
+    ├── env_automation/         – Infra as code (CloudFormation), deploy scripts.
+    ├── ip_address_management/  – IP assignment, Azure ARM templates.
+    ├── linux_firewall_rules/   – Linux firewall rules lab.
+    ├── linux_networking/       – Linux networking basics with diagrams.
+    ├── packet_tracer/          – Cisco Packet Tracer labs and outputs.
+    ├── windows_firewall_rules/ – Windows firewall rules lab.
+    └── windows_networking/     – Windows networking journal and screenshots.
 └── week2/
     ├── cml_lab/                – Cisco Modeling Labs NAT lab configs.
-    ├── cml_vpn/                – VPN lab with sample config.
-    ├── cml_wireshark/          – Wireshark lab capturing traffic.
-    ├── forward_proxy/          – VM-inception proxy notes lab.
-    ├── load_balancer/          – Load balancer presentation notes.
-    ├── nat_basics/             – NAT basics summary with diagrams.
-    ├── reverse_proxy/          – Reverse proxy lab notes and images.
+    ├── cml_vpn/                – VPN lab.
+    ├── cml_wireshark/          – Wireshark capture lab.
+    ├── forward_proxy/          – Forward proxy (VM inception) lab.
+    ├── ha_proxy/               – HAProxy load balancer with backends.
+    ├── load_balancer/          – Load balancer notes and presentation.
+    ├── nat_basics/             – NAT fundamentals with diagrams.
+    ├── reverse_proxy/          – Reverse proxy lab and documentation.
     └── zero-trust/             – Zero-trust presentation notes.
 ```
 
-## "Stand-up" updates Week 2
+## Stand-up Updates
+
+### Week 2
+
+2025-06-30
+
+Deployed an HAProxy load balancer with two backend web servers using
+Containerlab. See [Journal](projects/week2/ha_proxy/JOURNAL.md).
 
 2025-06-23/25
 
@@ -48,19 +69,20 @@ all resources at once by removing the entire project.
 
 2025-06-15/16
 
-- Spent the last couple of days trying to get **Cisco CML** running via VMware,
-  but hit compatibility issues on my Silicon Mac, even when using the Windows VM
-  from last week! I’ve documented my progress and blockers in the Journal with
-  screenshots. See [Journal](projects/week2/cml_lab/JOURNAL.md).
+Spent the last couple of days trying to get **Cisco CML** running via VMware,
+but hit compatibility issues on my Silicon Mac, even when using the Windows VM
+from last week! I’ve documented my progress and blockers in the Journal with
+screenshots. See [Journal](projects/week2/cml_lab/JOURNAL.md).
+
 - **CML VPN Lab**. See [Journal](projects/week2/cml_vpn/JOURNAL.md).
 - **CML Wireshark Lab**. See [Journal](projects/week2/cml_wireshark/JOURNAL.md).
 - Summary of the **NAT Basics** presentation. See [Journal](projects/week2/nat_basics/assets/static_nat_example.png).
 
-## "Stand-up" updates Week 1
+### Week 1
 
 2025-06-07/08/09/10
 
-Followed the Week1 tutorials:
+Completed the tutorials:
 
 - **Cloud Networking**. See [Journal](projects/week1/cloud_networking/JOURNAL.md).
 - **Linux Firewall Rules**. See [Journal](projects/week1/linux_firewall_rules/JOURNAL.md).
