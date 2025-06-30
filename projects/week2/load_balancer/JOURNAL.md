@@ -2,7 +2,10 @@
 
 ## High-Level Overview
 
-A **Load Balancer** is a networking component (hardware or software) that distributes incoming network traffic across multiple backend servers to ensure no single server becomes overwhelmed. It's a key part of high-availability, scalable systems.
+A **Load Balancer** is a networking component (hardware or software) that
+distributes incoming network traffic across multiple backend servers to ensure
+no single server becomes overwhelmed. It's a key part of high-availability,
+scalable systems.
 
 Why is it used?
 

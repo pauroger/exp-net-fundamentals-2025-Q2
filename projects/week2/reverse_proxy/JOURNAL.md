@@ -26,7 +26,8 @@ supports a wide range of protocols including HTTP, HTTPS, FTP, and more.
 On this lab: We will be using Squid as a reverse proxy to test routing to a
 backend Windows IIS server.
 
-This lets you simulate how a real load balancer or application gateway might route requests in production.
+This lets you simulate how a real load balancer or application gateway might
+route requests in production.
 
 We edited the `/etc/squid/squid.conf` to include:
 
@@ -44,7 +45,8 @@ http_access allow all
 cache_peer_access iis-server allow site
 ```
 
-Go back to the Windows box and set up the server. Make sure to add the Role `IIS Server`.
+Go back to the Windows box and set up the server. Make sure to add the Role
+`IIS Server`.
 
 ![IIS Windows Server](assets/iis_windows_server.png)
 
